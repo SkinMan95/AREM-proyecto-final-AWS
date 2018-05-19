@@ -10,15 +10,15 @@ import java.util.List;
  */
 public interface FactServices {
 
-    public Format convertFormat(String f1, String f2, Format f);
+    public Format convertFormat(String f1, String f2, Format f) throws FactServicesException;
 
-    public void registerUser(User u, String passHash);
+    public void registerUser(User u, String passHash) throws FactServicesException;
 
     public List<String> getAvailableFormats();
 
-    public String validateFormat(String fn, Format f);
+    public String validateFormat(String fn, Format f) throws FactServicesException;
 
-    public void makeInvoice(Format f, String username, String passHash);
+    public void makeInvoice(Format f, String username, String passHash) throws FactServicesException;
 
-    public String getInvoiceStatus(String fid);
+    public String getInvoiceStatus(String fid) throws FactServicesException;
 }
