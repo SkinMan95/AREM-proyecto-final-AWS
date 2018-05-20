@@ -1,6 +1,5 @@
 package edu.escuelaing.arem.proyecto3;
 
-import edu.escuelaing.arem.proyecto3.entities.Format;
 import edu.escuelaing.arem.proyecto3.entities.User;
 import edu.escuelaing.arem.proyecto3.entities.communication.Invoice;
 import edu.escuelaing.arem.proyecto3.entities.communication.UserWithPass;
@@ -50,7 +49,7 @@ public class FactRestController {
         try {
             digest = MessageDigest.getInstance("SHA-256");
             byte[] encodedhash = digest.digest(
-                pass.getBytes(StandardCharsets.UTF_8));
+                    pass.getBytes(StandardCharsets.UTF_8));
             return new String(encodedhash);
         } catch (NoSuchAlgorithmException ex) {
             return "";
@@ -58,7 +57,7 @@ public class FactRestController {
     }
 
     @GetMapping("/convert")
-    public ResponseEntity<?> convertFormat(@RequestParam("f1") String f1, @RequestParam("f2") String f2, @RequestBody Format f) {
+    public ResponseEntity<?> convertFormat(@RequestParam("f1") String f1, @RequestParam("f2") String f2, @RequestBody String f) {
         try {
             log("se intenta convertir un formato en otro: " + f1 + " a " + f2);
             services.convertFormat(f1, f2, f);
@@ -94,7 +93,7 @@ public class FactRestController {
     }
 
     @GetMapping("/validateFormat")
-    public ResponseEntity<?> validateFormat(@RequestParam("fn") String fn, @RequestBody Format f) {
+    public ResponseEntity<?> validateFormat(@RequestParam("fn") String fn, @RequestBody String f) {
         try {
             log("se intenta validar el formato " + fn + " " + f);
             String res = services.validateFormat(fn, f);
